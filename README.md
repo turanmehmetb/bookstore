@@ -11,7 +11,7 @@ Simple Bookstore API
 ```bash
 $ npm install
 ```
-Requires MongoDB
+Requires MongoDB installation
 
 ## Running the app
 
@@ -79,18 +79,13 @@ curl -X 'GET' \
 
 <h3>Bookstore CRUD API</h3>
 
-**Data Model;**
+**BookModel;**
 ```
-  @Prop({ maxlength: 255, required: true })
-  title: string;
-  @Prop({ maxlength: 2000, required: true })
-  description: string;
-  @Prop({ maxlength: 255, required: true })
-  author: string;
-  @Prop({ min: 0, max: new Date().getFullYear(), required: true })
-  year: number;
-  @Prop({ maxlength: 1000 })
-  cover: string;
+  title: string (required, can be up to 255 characters long)
+  description: string (required, can be up to 2000 characters long)
+  author: string (required, can be up to 255 characters long)
+  year: number (required, must be a positive integer between 0 and the current year)
+  cover: string (optional, can be up to 1000 characters long)
 ```
 **Methods;**
 
@@ -102,11 +97,13 @@ curl -X 'GET' \
 
 **Sample Data;**
 ```
-  title: 'MyFirstBook',
-  author: 'MBT',
-  description: 'desc',
-  year: 2011,
-  cover: 'url',
+{
+  "title": "MyFirstBook",
+  "author": "MBT",
+  "description": "desc",
+  "year": 2011,
+  "cover": "url"
+}
 ```
 
 
