@@ -9,6 +9,7 @@ import { Request, Response } from 'express';
 
 @Catch(Error)
 export class HttpExceptionFilter implements ExceptionFilter {
+  // http error interceptor to set error message of response
   catch(error: Error, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse<Response>();

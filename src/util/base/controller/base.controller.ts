@@ -4,11 +4,11 @@ import { ApiBearerAuth, ApiBody } from '@nestjs/swagger';
 import { BaseModel } from '../model/base.model';
 import { BaseService } from '../service/base.service';
 
-@ApiBearerAuth('accessToken-auth')
+@ApiBearerAuth('accessToken-auth') // aiming to swagger api authentication
 export class BaseController<T extends BaseModel> {
   constructor(private readonly service: BaseService<T>) {}
 
-  // @UseGuards(AuthGuard('accessToken'))
+  @UseGuards(AuthGuard('accessToken'))
   @Get()
   getAll(): Promise<T[]> {
     return this.service.getAll();
@@ -21,14 +21,14 @@ export class BaseController<T extends BaseModel> {
   }
 
   @UseGuards(AuthGuard('accessToken'))
-  @ApiBody({ required: true })
+  @ApiBody({ required: true }) // aiming to swagger api body field
   @Post()
   create(@Body() entity: T): Promise<T> {
     return this.service.create(entity);
   }
 
   @UseGuards(AuthGuard('accessToken'))
-  @ApiBody({ required: true })
+  @ApiBody({ required: true }) // aiming to swagger api body field
   @Put(':id')
   update(@Body() entity: T, @Param('id') id: string): Promise<T> {
     return this.service.update(id, entity);

@@ -5,6 +5,7 @@ import * as crypto from 'crypto';
 import mongoose from 'mongoose';
 
 export type Credentials = {
+  // credentials will provided to client
   clientId: string;
   secretKey: string;
 };
@@ -43,8 +44,8 @@ export class AuthService {
     const accessToken = this.jwtService.sign(
       { clientId: clientId },
       {
-        secret: this.configService.get<string>('JWT_ACCESS_SECRET'),
-        expiresIn: '60s',
+        secret: this.configService.get<string>('JWT_ACCESS_SECRET'), // token secrets stored as env variables
+        expiresIn: '5m',
       },
     );
     const refreshToken = this.jwtService.sign(

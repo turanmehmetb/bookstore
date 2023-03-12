@@ -6,6 +6,7 @@ import { Credentials, Tokens } from 'src/modules/auth/service/auth.service';
 import { BookModel } from 'src/modules/book/model/book.model';
 
 const BOOK: Omit<BookModel, '_id'> = {
+  // mongo will genereate _id field
   title: 'MyFirstBook',
   author: 'MBT',
   description: 'desc',
@@ -17,7 +18,7 @@ const INVALID_BOOK: Omit<BookModel, '_id'> = {
   title: 'MyFirstBook',
   author: 'MBT',
   description: 'desc',
-  year: -1,
+  year: -1, // invalid field
   cover: 'url',
 };
 
